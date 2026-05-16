@@ -15,7 +15,6 @@ def formatar_preco(valor):
 
     return f"{valor:.2f}".replace(".", ",")
 
-
 # =========================================
 # CLASSE PRODUTO
 # =========================================
@@ -111,7 +110,6 @@ class Produto:
 
         return self.__preco * self.__estoque
 
-
 # =========================================
 # CLASSE PRODUTO IMPORTADO
 # =========================================
@@ -159,7 +157,6 @@ class ProdutoImportado(Produto):
             f"País de origem: {self.__pais_origem} | "
             f"Valor em estoque: R$ {formatar_preco(valor_estoque)}"
         )
-
 
 # =========================================
 # FUNÇÃO CADASTRAR PRODUTO
@@ -293,7 +290,6 @@ def cadastrar_produto():
 
             print("Opção inválida. Digite apenas S ou N.")
 
-
 # =========================================
 # FUNÇÃO LISTAR PRODUTOS
 # =========================================
@@ -313,7 +309,6 @@ def listar_produtos():
     for produto in produtos:
 
         produto.mostrar_dados()
-
 
 # =========================================
 # FUNÇÃO MOSTRAR RELATÓRIO
