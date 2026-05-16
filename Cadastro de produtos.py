@@ -10,8 +10,7 @@ produtos = []
 # FUNÇÃO FORMATAR PREÇO
 # =========================================
 
-# Função utilizada para formatar os valores monetários
-# trocando ponto por vírgula
+# Função utilizada para formatar os valores monetários trocando ponto por vírgula
 def formatar_preco(valor):
 
     return f"{valor:.2f}".replace(".", ",")
