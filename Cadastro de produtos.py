@@ -15,6 +15,7 @@ def formatar_preco(valor):
 
     return f"{valor:.2f}".replace(".", ",")
 
+
 # =========================================
 # CLASSE PRODUTO
 # =========================================
@@ -110,6 +111,7 @@ class Produto:
 
         return self.__preco * self.__estoque
 
+
 # =========================================
 # CLASSE PRODUTO IMPORTADO
 # =========================================
@@ -158,6 +160,7 @@ class ProdutoImportado(Produto):
             f"Valor em estoque: R$ {formatar_preco(valor_estoque)}"
         )
 
+
 # =========================================
 # FUNÇÃO CADASTRAR PRODUTO
 # =========================================
@@ -167,12 +170,37 @@ def cadastrar_produto():
 
     print("\n===== CADASTRAR PRODUTO =====")
 
-    # Recebe o nome e categoria do produto
-    nome = input("Digite o nome do produto: ").capitalize()
+    # ---------------------------------
+    # VALIDAÇÃO DO NOME
+    # ---------------------------------
 
-    categoria = input(
-        "Digite a categoria do produto: "
-    ).capitalize()
+    while True:
+
+        nome = input(
+            "Digite o nome do produto: "
+        ).capitalize().strip()
+
+        # verifica se ficou vazio
+        if nome != "":
+            break
+
+        print("O nome não pode ficar vazio.")
+
+    # ---------------------------------
+    # VALIDAÇÃO DA CATEGORIA
+    # ---------------------------------
+
+    while True:
+
+        categoria = input(
+            "Digite a categoria do produto: "
+        ).capitalize().strip()
+
+        # verifica se ficou vazio
+        if categoria != "":
+            break
+
+        print("A categoria não pode ficar vazia.")
 
     # ---------------------------------
     # VALIDAÇÃO DO PREÇO
@@ -183,14 +211,21 @@ def cadastrar_produto():
         try:
 
             # Recebe o preço digitado pelo usuário
-            preco = float(input("Digite o preço do produto: R$ ").replace(",", "."))
+            preco = float(
+                input(
+                    "Digite o preço do produto: R$ "
+                ).replace(",", ".")
+            )
 
             # Verifica se o preço é válido
             if preco > 0:
                 break
 
             else:
-                print("Preço inválido. O preço deve ser maior que 0.")
+                print(
+                    "Preço inválido. "
+                    "O preço deve ser maior que 0."
+                )
 
         except:
 
@@ -205,14 +240,21 @@ def cadastrar_produto():
         try:
 
             # Recebe a quantidade em estoque
-            estoque = int(input("Digite a quantidade em estoque: "))
+            estoque = int(
+                input(
+                    "Digite a quantidade em estoque: "
+                )
+            )
 
             # Verifica se o estoque é válido
             if estoque >= 0:
                 break
 
             else:
-                print("Estoque inválido. O estoque não pode ser negativo.")
+                print(
+                    "Estoque inválido. "
+                    "O estoque não pode ser negativo."
+                )
 
         except:
 
@@ -238,10 +280,18 @@ def cadastrar_produto():
             # Validação do país de origem
             while True:
 
-                pais_origem = input("Digite o país de origem: " ).strip().title()
+                pais_origem = input(
+                    "Digite o país de origem: "
+                ).strip().title()
 
                 # Verifica se o país contém apenas letras
-                if pais_origem.replace(" ", "").replace("-", "").isalpha():
+                if pais_origem.replace(
+                    " ",
+                    ""
+                ).replace(
+                    "-",
+                    ""
+                ).isalpha():
 
                     produto = ProdutoImportado(
                         nome,
@@ -254,14 +304,16 @@ def cadastrar_produto():
                     # Adiciona o produto na lista
                     produtos.append(produto)
 
-                    print("\nProduto cadastrado com sucesso!")
+                    print(
+                        "\nProduto cadastrado com sucesso!"
+                    )
 
                     break
-                
-                #Se usuario digitar um nome de país invalido com digitos ou caractere
+
+                # Se usuário digitar um nome inválido
                 else:
 
-                    print("Nome de país invalido")
+                    print("Nome de país inválido.")
 
             break
 
@@ -288,7 +340,11 @@ def cadastrar_produto():
         # OPÇÃO INVÁLIDA
         else:
 
-            print("Opção inválida. Digite apenas S ou N.")
+            print(
+                "Opção inválida. "
+                "Digite apenas S ou N."
+            )
+
 
 # =========================================
 # FUNÇÃO LISTAR PRODUTOS
@@ -310,6 +366,7 @@ def listar_produtos():
 
         produto.mostrar_dados()
 
+
 # =========================================
 # FUNÇÃO MOSTRAR RELATÓRIO
 # =========================================
@@ -330,7 +387,6 @@ def mostrar_relatorio():
     soma_precos = 0
 
     # Define inicialmente o primeiro produto
-    # como mais caro e mais barato
     produto_mais_caro = produtos[0]
     produto_mais_barato = produtos[0]
 
@@ -384,7 +440,10 @@ def mostrar_relatorio():
     # MOSTRAR DADOS DO RELATÓRIO
     # ---------------------------------
 
-    print(f"\nQuantidade de produtos: {relatorio['quantidade_produtos']}")
+    print(
+        f"\nQuantidade de produtos: "
+        f"{relatorio['quantidade_produtos']}"
+    )
 
     print(
         f"Média de preços: "
@@ -407,6 +466,7 @@ def mostrar_relatorio():
         f"Valor total em estoque: "
         f"R$ {formatar_preco(relatorio['valor_total_estoque'])}"
     )
+
 
 # =========================================
 # MENU PRINCIPAL
@@ -454,4 +514,3 @@ while True:
     else:
 
         print("Opção inválida. Escolha uma opção válida.")
-        
